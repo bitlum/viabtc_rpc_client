@@ -166,6 +166,17 @@ var (
 
 type MarketOrderSide uint32
 
+func NewMarketSideFromString(s string) MarketOrderSide {
+	switch strings.ToLower(s) {
+	case "ask":
+		return MarketOrderSideAsk
+	case "bid":
+		return MarketOrderSideBid
+	}
+
+	return 0
+}
+
 func (s MarketOrderSide) String() string {
 	switch s {
 	case MarketOrderSideAsk:
