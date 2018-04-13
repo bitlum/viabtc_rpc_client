@@ -18,7 +18,47 @@ type request struct {
 	ID     int32         `json:"id"`
 }
 
-// MaxLimit maximum available limit value, which can be passed in engine rpc
+var (
+	// AllAssets all assets available on the viabtc client.
+	AllAssets = []AssetType{
+		AssetBTC,
+		AssetBCH,
+		AssetETH,
+		AssetLTC,
+		AssetDASH,
+	}
+
+	// AllMarkets all markets available on the viabtc client.
+	AllMarkets = []MarketType{
+		MarketBTCETH,
+		MarketBTCBCH,
+		MarketBTCLTC,
+		MarketBTCDASH,
+		MarketETHLTC,
+	}
+
+	// AllOrderStatuses all possible statuses of the client.
+	AllOrderStatuses = []string{
+		"pending",
+		"finished",
+		"canceled",
+	}
+
+	// AllMarketSides...
+	AllMarketSides = []string{
+		"ask",
+		"bid",
+	}
+
+	// AllActionTypes...
+	AllActionTypes = []ActionType{
+		ActionTrade,
+		ActionDeposit,
+		ActionWithdrawal,
+	}
+)
+
+// MaxLimit maximum available limit value, which can be passed in client rpc
 // call.
 const MaxLimit int32 = 100
 
@@ -125,17 +165,6 @@ var (
 )
 
 type MarketOrderSide uint32
-
-func NewMarketSideFromString(s string) MarketOrderSide {
-	switch strings.ToLower(s) {
-	case "ask":
-		return MarketOrderSideAsk
-	case "bid":
-		return MarketOrderSideBid
-	}
-
-	return 0
-}
 
 func (s MarketOrderSide) String() string {
 	switch s {
@@ -284,7 +313,7 @@ type OrderDetailedInfo struct {
 	// order originator during the order immediate execution.
 	DealFee string `json:"deal_fee"`
 
-	// CTime is the time of order entity creation within engine
+	// CTime is the time of order entity creation within client
 	// core service.
 	CTime float64 `json:"ctime"`
 
@@ -384,7 +413,7 @@ type AssetSummaryResponse []struct {
 	AssetName string `json:"name"`
 
 	// TotalBalance is an overall balance available for this asset in the
-	// engine.
+	// client.
 	TotalBalance string `json:"total_balance"`
 
 	// AvailableCount is the number of account which hold this asset with

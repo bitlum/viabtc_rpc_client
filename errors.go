@@ -1,7 +1,7 @@
 package viabtc
 
 // EngineCodeError the error code which is used to identify the exact problem
-// which occurred on the exchange engine side.
+// which occurred on the exchange client side.
 type EngineCodeError uint8
 
 const (

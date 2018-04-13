@@ -7,7 +7,7 @@ import (
 )
 
 // extractArguments is an helper function which is used to iterate over
-// request arguments and combine its values in array recognized by the engine.
+// request arguments and combine its values in array recognized by the client.
 // This format is required by exchange core rpc server.
 func extractArguments(s interface{}) ([]interface{}, error) {
 	var v reflect.Value
