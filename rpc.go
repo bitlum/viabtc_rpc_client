@@ -34,7 +34,6 @@ var (
 		MarketBTCBCH,
 		MarketBTCLTC,
 		MarketBTCDASH,
-		MarketETHLTC,
 	}
 
 	// AllOrderStatuses all possible statuses of the client.
@@ -156,11 +155,6 @@ var (
 	MarketBTCDASH = MarketType{
 		Stock: AssetDASH,
 		Money: AssetBTC,
-	}
-
-	MarketETHLTC = MarketType{
-		Stock: AssetLTC,
-		Money: AssetETH,
 	}
 )
 
